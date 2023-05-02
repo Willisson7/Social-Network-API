@@ -15,7 +15,7 @@ const getUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-        const user = await User.findOne({_id: req.params.userId});
+        const user = await User.findOne({ _id: req.params.userId });
         const userObj = {
             user,
         }
@@ -38,59 +38,58 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(
-      req.params.userId,
-      req.body,
-      { new: true }
-    );
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: 'Error updating user' });
-  }
-};
-
-const deleteUser = async (req, res) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.userId);
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: 'Error deleting user' });
-  }
-};
-
-const addFriend = async (req, res) => {
-    try{
-        const user = await User.findOneAndUpdate(
-            {_id: req.params.userId},
-            {$push: {friends: req.boy.friendId} },
-            {new: true}
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.userId,
+            req.body,
+            { new: true }
         );
         res.json(user);
     } catch (err) {
         console.log(err);
-            res.status(500).json({error: 'Error adding friend'});
-        }
+        res.status(500).json({ error: 'Error updating user' });
     }
+};
+
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.userId);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Error deleting user' });
+    }
+};
+
+const addFriend = async (req, res) => {
+    try {
+        const user = await User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $push: { friends: req.boy.friendId } },
+            { new: true }
+        );
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Error adding friend' });
+    }
+}
 
 
-// write deleteFriendFunction
 const deleteFriend = async (req, res) => {
     try {
-      const user = await User.findOneAndUpdate(
-        { _id: req.params.userId },
-        { $pull: { friends: req.params.friendId } },
-        { new: true }
-      );
-      res.json(user);
+        const user = await User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $pull: { friends: req.params.friendId } },
+            { new: true }
+        );
+        res.json(user);
     } catch (err) {
-      console.log(err);
-      res.status(500).json({ error: 'Error deleting friend' });
+        console.log(err);
+        res.status(500).json({ error: 'Error deleting friend' });
     }
-  };
-  
+};
+
 
 module.exports = {
     getUsers,
@@ -100,4 +99,4 @@ module.exports = {
     deleteUser,
     addFriend,
     deleteFriend
-  };
+};
