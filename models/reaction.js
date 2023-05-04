@@ -7,25 +7,27 @@ const reactionSchema = new mongoose.Schema(
             default: () => new mongoose.Types.ObjectId()
 
         },
-        userName:{
+        userName: {
             type: String,
             unique: true,
             required: true,
             trim: true
         },
-        reactionText:{
+        reactionText: {
             type: String,
             required: true,
         },
         createdAt: {
             type: Date,
-            default: Date.now,   
+            default: Date.now,
         },
+    },
+    {
 
-     toJSON: {
-    virtuals: true
-     },
-     id: false
+        toJSON: {
+            getters: true
+        },
+        id: false
     }
 );
 

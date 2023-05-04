@@ -1,7 +1,28 @@
-// make sure that reactions 
+const router = require('express').Router();
 
-// router.route('/thoughtId/reactions)
+const {
+    getThoughts,
+    getThoughtbyId,
+    addThought,
+    updateThought,
+    addReaction,
+    deleteReaction,
+    deleteThought
+} = require('../../controllers/thoughtController');
 
-// router.route ('./thoughtId/reactions).post(addReaction);
+router.route('/')
+    .get(getThoughts)
+    .post(addThought);
 
-// router.route ('./thougthId/reactions/reactionId).delete(deleteReaction);
+router.route('/:thoughtId')
+    .get(getThoughtbyId)
+    .put(updateThought)
+    .delete(deleteThought);
+
+router.route('/:thoughtId/reactions')
+    .post(addReaction);
+
+router.route('/:thoughtId/reactions/:reactionId')
+    .delete(deleteReaction);
+
+module.exports = router;

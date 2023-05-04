@@ -26,7 +26,7 @@ const getThoughtbyId = async (req, res) => {
     }
 };
 
-// write function to add thoughts
+// function to add thoughts
 const addThought = async (req, res) => {
     try {
         const newThought = new Thought(req.body);
@@ -42,7 +42,7 @@ const addThought = async (req, res) => {
     }
 };
 
-// write function to update thoughts
+// function to update thoughts
 const updateThought = async (req, res) => {
     try {
         const updateThought = await Thought.findOneAndUpdate(
@@ -95,7 +95,7 @@ const deleteReaction = async (req, res) => {
     }
 };
 
-// write function to delete thoughts
+// function to delete thoughts
 
 const deleteThought = async (req, res) => {
     try {

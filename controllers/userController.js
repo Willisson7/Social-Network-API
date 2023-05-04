@@ -65,7 +65,7 @@ const addFriend = async (req, res) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $push: { friends: req.boy.friendId } },
+            { $addToSet: { friends: req.body._id } },
             { new: true }
         );
         res.json(user);
@@ -73,14 +73,14 @@ const addFriend = async (req, res) => {
         console.log(err);
         res.status(500).json({ error: 'Error adding friend' });
     }
-}
+};
 
 
 const deleteFriend = async (req, res) => {
     try {
         const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: { friends: req.params.friendId } },
+            { $pull: { friends: req.body._id } },
             { new: true }
         );
         res.json(user);
