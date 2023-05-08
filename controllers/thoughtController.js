@@ -88,12 +88,7 @@ const deleteReaction = async (req, res) => {
             {
                 new : true
             });
-        // const reactionId = req.params.reactionId;
-        // thought.reactions.id(reactionId).remove();
-        // const savedThought = await thought.save();
-        // const thoughtObj = {
-        //     thought: savedThought,
-        // };
+     
         res.json(thought);
     } catch (err) {
         console.log(err);
