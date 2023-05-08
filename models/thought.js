@@ -5,7 +5,6 @@ const thoughtSchema = new mongoose.Schema(
     {
         userName:{
             type: String,
-            unique: true,
             required: true,
             trim: true
         },

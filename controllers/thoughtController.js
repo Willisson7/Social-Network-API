@@ -29,12 +29,12 @@ const getThoughtbyId = async (req, res) => {
 // function to add thoughts
 const addThought = async (req, res) => {
     try {
-        const newThought = new Thought(req.body);
-        const savedThought = await newThought.save();
-        const thoughtObj = {
-            thought: savedThought,
-        };
-        res.json(thoughtObj);
+        const newThought = await Thought.create(req.body);
+        // const savedThought = await newThought.save();
+        // const thoughtObj = {
+        //     thought: newThought,
+        // };
+        res.json(newThought);
     }
     catch (err) {
         console.log(err);
@@ -46,7 +46,7 @@ const addThought = async (req, res) => {
 const updateThought = async (req, res) => {
     try {
         const updateThought = await Thought.findOneAndUpdate(
-            { _id: req.params.thoughtid },
+            { _id: req.params.thoughtId },
             req.body,
             { new: true }
         );
@@ -63,7 +63,7 @@ const updateThought = async (req, res) => {
 // function to add reaction
 const addReaction = async (req, res) => {
     try {
-        const thought = await Thought.findOneandUpdate(
+        const thought = await Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $push: { reactions: req.body } },
             { runValidators: true, new: true }
@@ -81,14 +81,20 @@ const addReaction = async (req, res) => {
 
 const deleteReaction = async (req, res) => {
     try {
-        const thought = await Thought.findOne({ _id: req.params.thoughtId });
-        const reactionId = req.params.reactionId;
-        thought.reactions.id(reactionId).remove();
-        const savedThought = await thought.save();
-        const thoughtObj = {
-            thought: savedThought,
-        };
-        res.json(thoughtObj);
+        const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtId },
+            {
+            $pull : {reactions: {reactionId: req.params.reactionId}}
+            },
+            {
+                new : true
+            });
+        // const reactionId = req.params.reactionId;
+        // thought.reactions.id(reactionId).remove();
+        // const savedThought = await thought.save();
+        // const thoughtObj = {
+        //     thought: savedThought,
+        // };
+        res.json(thought);
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'No reaction with that Id' });

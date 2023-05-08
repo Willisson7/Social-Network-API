@@ -9,7 +9,7 @@ const reactionSchema = new mongoose.Schema(
         },
         userName: {
             type: String,
-            unique: true,
+            // unique: true,
             required: true,
             trim: true
         },

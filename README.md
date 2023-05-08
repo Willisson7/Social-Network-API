@@ -1,7 +1,7 @@
 # Social-Network-API
 An API for a social network web application using the Express.js and Mongoose packages
 
-  # Table of Contents
+  # TABLE OF CONTENTS
 1. [License](#license)
 2. [Description](#description)
 3. [Installation](#installation)
@@ -9,20 +9,20 @@ An API for a social network web application using the Express.js and Mongoose pa
 5. [Contributing](#contributing)
 6. [Tests](#tests)
 7. [Questions](#questions)
-  ## license
+  ## LICENSE
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   MIT
-  ## description
+  ## DESCRIPTION
  <!-- commentary to be added -->
-  ## installation
+  ## INSTALLATION
   N/A
-  ## usage
+  ## USAGE
 <!-- to be added -->
-  ## contributing
+  ## CONTRIBUTING
  <!-- Sole contributor -->
-  ## tests
+  ## TESTS
   N/A
-  ## questions
+  ## QUESTIONS
   
   "Below is listed my contact information and github profile if you have further questions."
 
